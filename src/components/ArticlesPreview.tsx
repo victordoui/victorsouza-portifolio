@@ -61,18 +61,18 @@ const ArticlesPreview = () => {
       <div className="container mx-auto px-4 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-6xl font-display font-bold mb-6 hero-gradient-text">
-            Últimos Artigos do Blog
+            Artigos do Blog
           </h2>
         <p className="text-muted-foreground mb-8 leading-relaxed max-w-2xl mx-auto">
           Compartilho insights sobre desenvolvimento, tecnologia e experiências do mercado
         </p>
       </div>
 
-      <div className="flex flex-wrap justify-center gap-6 mb-8">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
         {artigos.map((artigo, index) => (
           <Card 
             key={artigo.id} 
-            className="group bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-500 cursor-pointer w-full sm:w-[360px] max-w-full"
+            className="group bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-500 cursor-pointer"
             onClick={() => navigate('/blog')}
           >
             <CardContent className="p-6">
