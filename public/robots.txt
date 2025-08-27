@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /auth
+
+# Sitemap location
+Sitemap: https://victorsouza.dev/sitemap.xml
+
+# Crawl delay
+Crawl-delay: 1
