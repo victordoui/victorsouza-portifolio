@@ -57,21 +57,21 @@ const ArticlesPreview = () => {
   }
 
   return (
-    <div className="my-16">
+    <div className="my-16 max-w-6xl mx-auto px-6">
       <div className="text-center mb-12">
-        <h3 className="text-2xl font-semibold mb-4 text-foreground">
+        <h2 className="text-3xl font-bold mb-4 text-foreground">
           Últimos Artigos do Blog
-        </h3>
+        </h2>
         <p className="text-muted-foreground mb-8 leading-relaxed max-w-2xl mx-auto">
           Compartilho insights sobre desenvolvimento, tecnologia e experiências do mercado
         </p>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-6 mb-8">
+      <div className="flex flex-wrap justify-center gap-6 mb-8">
         {artigos.map((artigo, index) => (
           <Card 
             key={artigo.id} 
-            className="group bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-500 cursor-pointer"
+            className="group bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-500 cursor-pointer w-full sm:w-[360px] max-w-full"
             onClick={() => navigate('/blog')}
           >
             <CardContent className="p-6">
