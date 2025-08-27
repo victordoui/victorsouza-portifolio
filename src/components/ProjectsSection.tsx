@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Github, Sparkles, ArrowUpRight } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { ProjectCard } from '@/components/ProjectCard';
-import ArticlesPreview from '@/components/ArticlesPreview';
+
 interface Projeto {
   id: string;
   titulo: string;
@@ -86,9 +86,6 @@ const ProjectsSection = () => {
             <h3 className="text-2xl font-semibold mb-4 text-foreground">
               Gostou do que viu?
             </h3>
-            
-            <ArticlesPreview />
-            
             <p className="text-muted-foreground mb-8 leading-relaxed">
               Cada projeto representa uma jornada única de descoberta e inovação. 
               Vamos conversar sobre como posso ajudar a transformar suas ideias em realidade.
