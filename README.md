@@ -1,4 +1,4 @@
-# 🚀 Portfólio Victor Souza - Desenvolvedor Full Stack
+# 🚀 Portfólio Victor Souza - Desenvolvedor Front-End e Vibe Coding
 
 > Portfólio moderno e responsivo desenvolvido com as mais recentes tecnologias web
 
@@ -148,9 +148,3 @@ Embora este seja um projeto pessoal, feedbacks e sugestões são sempre bem-vind
 ## 📄 Licença
 
 Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
----
-
-⭐ **Se você gostou do projeto, deixe uma estrela!**
-
-*Desenvolvido com 💜 por Victor Souza*
