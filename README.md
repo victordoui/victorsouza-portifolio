@@ -140,7 +140,7 @@ Embora este seja um projeto pessoal, feedbacks e sugestões são sempre bem-vind
 
 ## 📞 Contato
 
-- **Portfolio**: [seu-portfolio.com](https://victorsouza.netlify.app)
+- **Portfolio**: [victorsouza.com](https://victorsouza.netlify.app)
 - **LinkedIn**: [Victor Souza](https://www.linkedin.com/in/victordoui/)
 - **Email**: victordoui@gmail.com
 - **GitHub**: [@victorsouza](https://github.com/victordoui)
