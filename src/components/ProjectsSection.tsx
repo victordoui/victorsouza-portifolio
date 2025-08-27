@@ -3,7 +3,6 @@ import { Button } from '@/components/ui/button';
 import { Github, Sparkles, ArrowUpRight } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { ProjectCard } from '@/components/ProjectCard';
-
 interface Projeto {
   id: string;
   titulo: string;
@@ -25,10 +24,11 @@ const ProjectsSection = () => {
     const {
       data,
       error
-    } = await supabase.from('projetos').select('*')
-      .order('ordem_exibicao', { ascending: false })
-      .order('data_criacao', { ascending: false });
-    
+    } = await supabase.from('projetos').select('*').order('ordem_exibicao', {
+      ascending: false
+    }).order('data_criacao', {
+      ascending: false
+    });
     if (!error && data) {
       setProjetos(data);
     }
@@ -64,49 +64,14 @@ const ProjectsSection = () => {
         </div>
 
         {/* Projects Grid */}
-        {projetos.length === 0 ? (
-          <div className="text-center py-16">
+        {projetos.length === 0 ? <div className="text-center py-16">
             <p className="text-muted-foreground">Nenhum projeto encontrado.</p>
-          </div>
-        ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projetos.map((projeto, index) => (
-              <ProjectCard 
-                key={projeto.id} 
-                project={projeto} 
-                index={index}
-              />
-            ))}
-          </div>
-        )}
+          </div> : <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projetos.map((projeto, index) => <ProjectCard key={projeto.id} project={projeto} index={index} />)}
+          </div>}
 
         {/* Enhanced Call to Action */}
-        <div className="text-center mt-20">
-          <div className="max-w-2xl mx-auto">
-            <h3 className="text-2xl font-semibold mb-4 text-foreground">
-              Gostou do que viu?
-            </h3>
-            <p className="text-muted-foreground mb-8 leading-relaxed">
-              Cada projeto representa uma jornada única de descoberta e inovação. 
-              Vamos conversar sobre como posso ajudar a transformar suas ideias em realidade.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="btn-modern px-8 py-3 group" onClick={() => {
-              const element = document.getElementById('contact');
-              element?.scrollIntoView({
-                behavior: 'smooth'
-              });
-            }}>
-                <span>Entre em Contato</span>
-                <ArrowUpRight className="ml-2 h-5 w-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
-              </Button>
-              <Button size="lg" variant="outline" className="border-primary/30 hover:bg-primary/10 hover:border-primary transition-all duration-300 px-8 py-3" onClick={() => window.open('https://github.com/victordoui', '_blank')}>
-                <Github className="mr-2 h-5 w-5" />
-                Ver Mais no GitHub
-              </Button>
-            </div>
-          </div>
-        </div>
+        
       </div>
     </section>;
 };
