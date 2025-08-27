@@ -1,73 +1,156 @@
-# Welcome to your Lovable project
+# 🚀 Portfólio Victor Souza - Desenvolvedor Full Stack
 
-## Project info
+> Portfólio moderno e responsivo desenvolvido com as mais recentes tecnologias web
 
-**URL**: https://lovable.dev/projects/9e7067f3-9f57-4ac9-92ce-963c905a7e49
+[![Deploy Status](https://img.shields.io/badge/Deploy-Live-success)](https://seu-portfolio.com)
+[![React](https://img.shields.io/badge/React-18.3.1-blue)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Latest-blue)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC)](https://tailwindcss.com/)
 
-## How can I edit this code?
+## ✨ Sobre o Projeto
 
-There are several ways of editing your application.
+Este é meu portfólio pessoal onde compartilho minha jornada como desenvolvedor full stack, showcaseando projetos, artigos técnicos e experiências profissionais. O site foi desenvolvido com foco na experiência do usuário, performance e design moderno.
 
-**Use Lovable**
+## 🎯 Funcionalidades
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/9e7067f3-9f57-4ac9-92ce-963c905a7e49) and start prompting.
+- **🏠 Homepage Interativa**: Apresentação com animações suaves e design responsivo
+- **👨‍💻 Sobre Mim**: História profissional e habilidades técnicas
+- **💼 Portfólio de Projetos**: Showcase dos principais projetos desenvolvidos
+- **📝 Blog Técnico**: Artigos sobre desenvolvimento e tecnologia
+- **🔍 Busca Inteligente**: Sistema de busca semântica para projetos e artigos
+- **📱 Design Responsivo**: Otimizado para todos os dispositivos
+- **🌙 Tema Moderno**: Interface elegante com gradientes e efeitos visuais
+- **⚡ Performance**: Carregamento rápido e otimizado
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🛠️ Tecnologias Utilizadas
 
-**Use your preferred IDE**
+### Frontend
+- **React 18** - Biblioteca para construção da interface
+- **TypeScript** - Tipagem estática para JavaScript
+- **Vite** - Build tool moderna e rápida
+- **Tailwind CSS** - Framework CSS utilitário
+- **Framer Motion** - Animações suaves e interativas
+- **Shadcn/ui** - Componentes UI modernos e acessíveis
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Backend & Database
+- **Supabase** - Backend as a Service
+- **PostgreSQL** - Banco de dados relacional
+- **Row Level Security** - Segurança avançada de dados
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Deploy & Infraestrutura
+- **Vercel/Netlify** - Deploy automatizado
+- **GitHub Actions** - CI/CD pipeline
 
-Follow these steps:
+## 🚀 Projetos em Destaque
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### 🏪 Na Regua
+**SaaS para Barbeiros**
+- Sistema completo de agendamento
+- Gestão de clientes e serviços
+- Interface intuitiva e responsiva
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### 🏗️ NSS Engenharia
+**Website Institucional**
+- Site completo com CMS
+- Painel administrativo intuitivo
+- Sistema de blog integrado
 
-# Step 3: Install the necessary dependencies.
-npm i
+### 📅 AgenDAY
+**Plataforma de Agendamentos**
+- Sistema versátil de agendamentos
+- Multi-empresa e multi-usuário
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+### 📦 VSTOCK
+**Almoxarifado Inteligente**
+- Controle de estoque automatizado
+- Relatórios e analytics
+- Interface web moderna
+
+## 📖 Blog & Artigos
+
+Regularmente publico artigos sobre:
+- **Inteligência Artificial** e Machine Learning
+- **Desenvolvimento Web** moderno
+- **Melhores práticas** em programação
+- **Tendências** do mercado tech
+
+## 🔧 Como Executar Localmente
+
+### Pré-requisitos
+- Node.js 18+ 
+- npm ou yarn
+- Git
+
+### Instalação
+
+```bash
+# Clone o repositório
+git clone https://github.com/seu-usuario/portfolio-victor.git
+
+# Navegue para o diretório
+cd portfolio-victor
+
+# Instale as dependências
+npm install
+
+# Configure as variáveis de ambiente
+cp .env.example .env.local
+# Adicione suas credenciais do Supabase
+
+# Execute o projeto em desenvolvimento
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+O projeto estará disponível em `http://localhost:3000`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Scripts Disponíveis
 
-**Use GitHub Codespaces**
+```bash
+npm run dev          # Servidor de desenvolvimento
+npm run build        # Build para produção
+npm run preview      # Preview do build
+npm run lint         # Verificação de código
+npm run type-check   # Verificação de tipos TypeScript
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 📁 Estrutura do Projeto
 
-## What technologies are used for this project?
+```
+src/
+├── components/          # Componentes reutilizáveis
+│   ├── ui/             # Componentes base (shadcn/ui)
+│   ├── sections/       # Seções da página
+│   └── ...
+├── pages/              # Páginas da aplicação
+├── hooks/              # Custom hooks
+├── utils/              # Funções utilitárias
+├── assets/             # Imagens e recursos
+└── styles/             # Estilos globais
+```
 
-This project is built with:
+## 🤝 Contribuições
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+Embora este seja um projeto pessoal, feedbacks e sugestões são sempre bem-vindos!
 
-## How can I deploy this project?
+1. Fork o projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
 
-Simply open [Lovable](https://lovable.dev/projects/9e7067f3-9f57-4ac9-92ce-963c905a7e49) and click on Share -> Publish.
+## 📞 Contato
 
-## Can I connect a custom domain to my Lovable project?
+- **Portfolio**: [seu-portfolio.com](https://seu-portfolio.com)
+- **LinkedIn**: [Victor Souza](https://linkedin.com/in/victor-souza)
+- **Email**: victor@email.com
+- **GitHub**: [@victorsouza](https://github.com/victorsouza)
 
-Yes, you can!
+## 📄 Licença
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+---
+
+⭐ **Se você gostou do projeto, deixe uma estrela!**
+
+*Desenvolvido com 💜 por Victor Souza*
