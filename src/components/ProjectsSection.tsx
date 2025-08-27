@@ -48,7 +48,7 @@ const ProjectsSection = () => {
         </div>
       </section>;
   }
-  return <section id="projects" className="section-padding relative overflow-hidden content-visibility-auto">
+  return <section id="projects" className="section-padding bg-muted/30 relative overflow-hidden content-visibility-auto">
       {/* Enhanced Background Effects */}
       <div className="absolute inset-0 mesh-background"></div>
       

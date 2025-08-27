@@ -57,7 +57,8 @@ const ArticlesPreview = () => {
   }
 
   return (
-    <div className="my-16 max-w-6xl mx-auto px-6">
+    <section className="section-padding bg-muted/30">
+      <div className="max-w-6xl mx-auto px-6">
       <div className="text-center mb-12">
         <h2 className="text-3xl font-bold mb-4 text-foreground">
           Últimos Artigos do Blog
@@ -125,7 +126,8 @@ const ArticlesPreview = () => {
           <ArrowRight className="ml-2 h-4 w-4" />
         </Button>
       </div>
-    </div>
+      </div>
+    </section>
   );
 };
 
