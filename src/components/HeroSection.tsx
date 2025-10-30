@@ -154,7 +154,7 @@ const HeroSection = () => {
               {/* Clean image with fade gradient */}
               <div className="relative overflow-hidden rounded-2xl image-fade-vignette">
                 <img
-                  src="/lovable-uploads/8a9fdab3-9825-477e-b538-8d25b79dc3b7.png"
+                  src="/lovable-uploads/victor-hero-professional.png"
                   alt="Victor Souza - Desenvolvedor Front-End e Especialista em IA"
                   className="w-full max-w-md mx-auto rounded-2xl object-cover aspect-square lg:aspect-[4/5] transition-all duration-700 group-hover:scale-105"
                   loading="eager"
