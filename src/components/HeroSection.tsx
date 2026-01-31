@@ -2,7 +2,8 @@ import { Button } from '@/components/ui/button';
 import { ArrowDown, Github, Linkedin, Mail, Download } from 'lucide-react';
 import { useSiteSettings } from '@/hooks/useSiteSettings';
 import { toast } from '@/hooks/use-toast';
-// Using public folder for profile image
+import { motion } from 'framer-motion';
+import TypewriterText from './TypewriterText';
 
 const HeroSection = () => {
   const { settings, downloadCv, hasCv, isLoading } = useSiteSettings();
@@ -13,28 +14,53 @@ const HeroSection = () => {
     }
   };
 
+  const roles = [
+    'Desenvolvedor Front-End',
+    'Analista de IA',
+    'Especialista em Soluções Digitais'
+  ];
+
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center relative">
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Content */}
-          <div className="text-center lg:text-left animate-fade-in-smooth">
+          <motion.div 
+            className="text-center lg:text-left"
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+          >
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 tracking-tight">
               <span className="block text-muted-foreground text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal mb-2">Olá, eu sou</span>
               <span className="block text-foreground">Victor Souza</span>
             </h1>
             
-            <p className="text-xl lg:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-              Desenvolvedor <span className="text-foreground font-medium">Front-End</span>, 
-              Analista de <span className="text-foreground font-medium">IA</span> e 
-              Especialista em <span className="text-foreground font-medium">Soluções Digitais</span>
+            <p className="text-xl lg:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed h-[60px] lg:h-[72px]">
+              <TypewriterText 
+                texts={roles}
+                className="text-foreground font-medium"
+                typingSpeed={80}
+                deletingSpeed={40}
+                pauseDuration={2500}
+              />
             </p>
 
-            <p className="text-lg text-muted-foreground mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+            <motion.p 
+              className="text-lg text-muted-foreground mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+            >
               Criando experiências digitais elegantes e transformando ideias em realidade através do código.
-            </p>
+            </motion.p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12">
+            <motion.div 
+              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+            >
               <Button 
                 size="lg" 
                 className="btn-modern h-12 px-8"
@@ -68,7 +94,6 @@ const HeroSection = () => {
                   if (hasCv) {
                     downloadCv();
                   } else {
-                    // Fallback to default CV in public folder
                     const link = document.createElement('a');
                     link.href = '/curriculo-victor-souza.pdf';
                     link.download = 'Curriculo-Victor-Souza.pdf';
@@ -79,10 +104,15 @@ const HeroSection = () => {
                 <Download className="mr-2 h-5 w-5" />
                 Baixar CV
               </Button>
-            </div>
+            </motion.div>
 
             {/* Social Links */}
-            <div className="flex justify-center lg:justify-start space-x-4">
+            <motion.div 
+              className="flex justify-center lg:justify-start space-x-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.6 }}
+            >
               {settings.github_url && (
                 <a 
                   href={settings.github_url} 
@@ -115,7 +145,6 @@ const HeroSection = () => {
                 </a>
               )}
               
-              {/* Fallback to default if no settings */}
               {!settings.github_url && !settings.linkedin_url && !settings.email && (
                 <>
                   <a 
@@ -145,13 +174,17 @@ const HeroSection = () => {
                   </a>
                 </>
               )}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Clean Hero Image without borders */}
-          <div className="relative animate-reveal" style={{animationDelay: '0.4s'}}>
+          <motion.div 
+            className="relative"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2, duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+          >
             <div className="relative z-10 group">
-              {/* Clean image with fade gradient */}
               <div className="relative overflow-hidden rounded-2xl image-fade-vignette">
                 <img
                   src="/lovable-uploads/victor-hero-professional.png"
@@ -160,15 +193,20 @@ const HeroSection = () => {
                   loading="eager"
                 />
               </div>
-              
-              {/* Simplified floating elements */}
-              
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <motion.div 
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1, y: [0, 10, 0] }}
+          transition={{ 
+            opacity: { delay: 1, duration: 0.5 },
+            y: { delay: 1.5, duration: 1.5, repeat: Infinity }
+          }}
+        >
           <button 
             onClick={() => scrollToSection('about')}
             className="p-3 text-muted-foreground hover:text-foreground hover:bg-accent rounded-lg transition-smooth"
@@ -176,7 +214,7 @@ const HeroSection = () => {
           >
             <ArrowDown className="h-5 w-5" />
           </button>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
