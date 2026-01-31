@@ -7,10 +7,13 @@ import ArticlesPreview from '@/components/ArticlesPreview';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import ChatWidget from '@/components/ChatWidget';
+import ScrollToTop from '@/components/ScrollToTop';
+import SEOHead from '@/components/SEOHead';
 
 const Index = () => {
   return (
     <div className="min-h-screen minimal-background relative overflow-hidden">
+      <SEOHead />
       <div className="relative z-10">
         <Navigation />
         <main>
@@ -24,6 +27,7 @@ const Index = () => {
         <Footer />
       </div>
       <ChatWidget />
+      <ScrollToTop />
     </div>
   );
 };

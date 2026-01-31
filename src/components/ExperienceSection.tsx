@@ -1,4 +1,7 @@
 import { Calendar, BarChart3, Code } from 'lucide-react';
+import AnimatedSection from '@/components/AnimatedSection';
+import { motion } from 'framer-motion';
+
 const ExperienceSection = () => {
   const experiences = [{
     company: "UNIG - UNIVERSIDADE NOVA IGUAÇU",
@@ -15,39 +18,57 @@ const ExperienceSection = () => {
     highlights: [],
     icon: Code
   }];
-  return <section id="experience" className="py-20 lg:py-32 relative content-visibility-auto">
+
+  return (
+    <section id="experience" className="py-20 lg:py-32 relative content-visibility-auto">
       <div className="container mx-auto px-4 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-16 reveal-up">
+        <AnimatedSection className="text-center mb-16">
           <h2 className="text-4xl lg:text-6xl font-display font-bold mb-6 hero-gradient-text">
             Experiência Profissional
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Minha trajetória profissional em análise de dados e desenvolvimento
           </p>
-        </div>
+        </AnimatedSection>
 
         {/* Timeline */}
         <div className="max-w-4xl mx-auto">
           <div className="relative">
             {/* Timeline Line */}
-            <div className="absolute left-8 top-0 bottom-0 w-px bg-border"></div>
+            <motion.div 
+              className="absolute left-8 top-0 bottom-0 w-px bg-border"
+              initial={{ scaleY: 0 }}
+              whileInView={{ scaleY: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, ease: "easeOut" }}
+              style={{ transformOrigin: 'top' }}
+            />
 
             {/* Experience Items */}
             <div className="space-y-12">
-              {experiences.map((exp, index) => <div key={index} className="relative flex items-start gap-8 reveal-up" style={{
-              animationDelay: `${0.2 + index * 0.2}s`
-            }}>
+              {experiences.map((exp, index) => (
+                <AnimatedSection 
+                  key={index} 
+                  delay={0.2 + index * 0.2}
+                  className="relative flex items-start gap-8"
+                >
                   {/* Timeline Dot */}
-                  <div className="relative z-10 flex-shrink-0">
+                  <motion.div 
+                    className="relative z-10 flex-shrink-0"
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.3 + index * 0.2, duration: 0.4, type: "spring" }}
+                  >
                     <div className="w-16 h-16 bg-card border-2 border-border rounded-full flex items-center justify-center shadow-elegant">
                       <exp.icon className="w-6 h-6 text-foreground" />
                     </div>
-                  </div>
+                  </motion.div>
 
                   {/* Content */}
                   <div className="flex-1 min-w-0 pb-8">
-                    <div className="bg-card border border-border rounded-xl p-6 shadow-elegant transition-smooth">
+                    <div className="bg-card border border-border rounded-xl p-6 shadow-elegant transition-smooth hover:shadow-lg">
                       {/* Header */}
                       <div className="mb-4">
                         <h3 className="font-display text-xl font-bold text-foreground mb-2">
@@ -70,22 +91,36 @@ const ExperienceSection = () => {
                       </p>
 
                       {/* Highlights */}
-                      {exp.highlights.length > 0 && <div className="space-y-2">
+                      {exp.highlights.length > 0 && (
+                        <div className="space-y-2">
                           <h4 className="font-medium text-foreground mb-2">Principais realizações:</h4>
                           <ul className="space-y-2">
-                            {exp.highlights.map((highlight, highlightIndex) => <li key={highlightIndex} className="flex items-start gap-2 text-sm text-muted-foreground">
+                            {exp.highlights.map((highlight, highlightIndex) => (
+                              <motion.li 
+                                key={highlightIndex} 
+                                className="flex items-start gap-2 text-sm text-muted-foreground"
+                                initial={{ opacity: 0, x: -10 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.4 + highlightIndex * 0.1 }}
+                              >
                                 <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
                                 <span className="leading-relaxed">{highlight}</span>
-                              </li>)}
+                              </motion.li>
+                            ))}
                           </ul>
-                        </div>}
+                        </div>
+                      )}
                     </div>
                   </div>
-                </div>)}
+                </AnimatedSection>
+              ))}
             </div>
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default ExperienceSection;

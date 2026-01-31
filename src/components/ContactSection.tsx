@@ -8,6 +8,8 @@ import { Mail, MapPin, Phone, Send } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useSiteSettings } from '@/hooks/useSiteSettings';
 import { supabase } from '@/integrations/supabase/client';
+import AnimatedSection from '@/components/AnimatedSection';
+import { motion } from 'framer-motion';
 
 const ContactSection = () => {
   const { settings } = useSiteSettings();
@@ -48,7 +50,6 @@ const ContactSection = () => {
         description: "Obrigado pelo contato. Responderei em breve!",
       });
 
-      // Reset form
       setFormData({
         name: '',
         email: '',
@@ -89,131 +90,145 @@ const ContactSection = () => {
   return (
     <section id="contact" className="section-padding bg-muted/30">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gradient-modern animate-reveal">
+        <AnimatedSection className="text-center mb-16">
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gradient-modern">
             Vamos Conversar
           </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto animate-reveal" style={{animationDelay: '0.2s'}}>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             Tem um projeto em mente? Quer discutir uma ideia ou simplesmente bater um papo sobre tecnologia? 
             Estou sempre aberto a novas oportunidades e conexões.
           </p>
-        </div>
+        </AnimatedSection>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
           {/* Contact Form */}
-          <Card className="shadow-lg">
-            <CardHeader>
-              <CardTitle className="text-2xl font-display">Envie uma Mensagem</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-4">
+          <AnimatedSection delay={0.1}>
+            <Card className="shadow-lg">
+              <CardHeader>
+                <CardTitle className="text-2xl font-display">Envie uma Mensagem</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="name">Nome</Label>
+                      <Input
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        placeholder="Seu nome completo"
+                        required
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="email">Email</Label>
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        placeholder="seu@email.com"
+                        required
+                      />
+                    </div>
+                  </div>
+
                   <div className="space-y-2">
-                    <Label htmlFor="name">Nome</Label>
+                    <Label htmlFor="subject">Assunto</Label>
                     <Input
-                      id="name"
-                      name="name"
-                      value={formData.name}
+                      id="subject"
+                      name="subject"
+                      value={formData.subject}
                       onChange={handleInputChange}
-                      placeholder="Seu nome completo"
+                      placeholder="Como posso ajudar?"
                       required
                     />
                   </div>
+
                   <div className="space-y-2">
-                    <Label htmlFor="email">Email</Label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      value={formData.email}
+                    <Label htmlFor="message">Mensagem</Label>
+                    <Textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
                       onChange={handleInputChange}
-                      placeholder="seu@email.com"
+                      placeholder="Conte-me mais sobre seu projeto ou ideia..."
+                      rows={6}
                       required
                     />
                   </div>
-                </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="subject">Assunto</Label>
-                  <Input
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleInputChange}
-                    placeholder="Como posso ajudar?"
-                    required
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="message">Mensagem</Label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    placeholder="Conte-me mais sobre seu projeto ou ideia..."
-                    rows={6}
-                    required
-                  />
-                </div>
-
-                <Button type="submit" size="lg" className="w-full">
-                  <Send className="mr-2 h-5 w-5" />
-                  Enviar Mensagem
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
+                  <Button type="submit" size="lg" className="w-full">
+                    <Send className="mr-2 h-5 w-5" />
+                    Enviar Mensagem
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+          </AnimatedSection>
 
           {/* Contact Information */}
-          <div className="space-y-8">
-            <div>
-              <h3 className="font-display text-2xl font-semibold mb-6 text-foreground">
-                Informações de Contato
-              </h3>
-              <p className="text-muted-foreground mb-8">
-                Prefere outro meio de contato? Aqui estão algumas alternativas:
-              </p>
-            </div>
+          <AnimatedSection delay={0.2} direction="right">
+            <div className="space-y-8">
+              <div>
+                <h3 className="font-display text-2xl font-semibold mb-6 text-foreground">
+                  Informações de Contato
+                </h3>
+                <p className="text-muted-foreground mb-8">
+                  Prefere outro meio de contato? Aqui estão algumas alternativas:
+                </p>
+              </div>
 
-            <div className="space-y-6">
-              {contactInfo.map((info, index) => (
-                <div 
-                  key={info.title} 
-                  className="p-6 rounded-lg border shadow-sm hover:shadow-md transition-all duration-300 group"
-                >
-                  <div className="flex items-center space-x-4">
-                    <div className="flex-shrink-0">
-                      <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                        <info.icon className="h-6 w-6 text-primary" />
+              <div className="space-y-6">
+                {contactInfo.map((info, index) => (
+                  <motion.div 
+                    key={info.title} 
+                    className="p-6 rounded-lg border shadow-sm hover:shadow-md transition-all duration-300 group"
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.1 * index }}
+                  >
+                    <div className="flex items-center space-x-4">
+                      <div className="flex-shrink-0">
+                        <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                          <info.icon className="h-6 w-6 text-primary" />
+                        </div>
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="font-semibold text-lg text-foreground mb-1">{info.title}</h4>
+                        <a 
+                          href={info.href}
+                          className="text-muted-foreground hover:text-primary transition-colors duration-300 text-sm font-medium"
+                        >
+                          {info.value}
+                        </a>
                       </div>
                     </div>
-                    <div className="flex-1">
-                      <h4 className="font-semibold text-lg text-foreground mb-1">{info.title}</h4>
-                      <a 
-                        href={info.href}
-                        className="text-muted-foreground hover:text-primary transition-colors duration-300 text-sm font-medium"
-                      >
-                        {info.value}
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+                  </motion.div>
+                ))}
+              </div>
 
-            {/* Enhanced CTA */}
-            <div className="rounded-lg border p-6 bg-muted/30">
-              <h4 className="font-semibold text-foreground mb-4 text-lg flex items-center">
-                ⚡ <span className="ml-2">Resposta Rápida Garantida</span>
-              </h4>
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                Costumo responder a todas as mensagens em até 24 horas. 
-                Para projetos urgentes, entre em contato via WhatsApp para uma resposta ainda mais rápida.
-              </p>
+              {/* Enhanced CTA */}
+              <motion.div 
+                className="rounded-lg border p-6 bg-muted/30"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 }}
+              >
+                <h4 className="font-semibold text-foreground mb-4 text-lg flex items-center">
+                  ⚡ <span className="ml-2">Resposta Rápida Garantida</span>
+                </h4>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  Costumo responder a todas as mensagens em até 24 horas. 
+                  Para projetos urgentes, entre em contato via WhatsApp para uma resposta ainda mais rápida.
+                </p>
+              </motion.div>
             </div>
-          </div>
+          </AnimatedSection>
         </div>
       </div>
     </section>

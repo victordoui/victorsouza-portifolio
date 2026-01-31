@@ -1,6 +1,8 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Brain, Code, Zap, Database, Palette, Rocket } from 'lucide-react';
+import AnimatedSection from '@/components/AnimatedSection';
+import { motion } from 'framer-motion';
 
 const AboutSection = () => {
   const skills = [
@@ -21,7 +23,7 @@ const AboutSection = () => {
   return (
     <section id="about" className="section-padding bg-muted/30">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="text-center mb-16">
+        <AnimatedSection className="text-center mb-16">
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-6 hero-gradient-text">
             Sobre Mim
           </h2>
@@ -29,11 +31,11 @@ const AboutSection = () => {
             Sou um desenvolvedor apaixonado por tecnologia, sempre buscando maneiras inovadoras 
             de resolver problemas complexos através de soluções elegantes e eficientes.
           </p>
-        </div>
+        </AnimatedSection>
 
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
           {/* About Content */}
-          <div className="animate-fade-in">
+          <AnimatedSection delay={0.1}>
             <h3 className="font-display text-2xl font-semibold mb-6 text-foreground">
               Transformando ideias em realidade digital
             </h3>
@@ -53,45 +55,50 @@ const AboutSection = () => {
                 do usuário e na inovação.
               </p>
             </div>
-          </div>
+          </AnimatedSection>
 
           {/* Technologies */}
-          <div className="animate-slide-in-right">
+          <AnimatedSection delay={0.2} direction="right">
             <h3 className="font-display text-xl font-semibold mb-6 text-foreground">
               Tecnologias & Ferramentas
             </h3>
             <div className="flex flex-wrap gap-3">
-              {technologies.map((tech) => (
-                <Badge 
-                  key={tech} 
-                  variant="secondary" 
-                  className="px-4 py-2 text-sm font-medium hover:scale-105 transition-transform duration-200"
+              {technologies.map((tech, index) => (
+                <motion.div
+                  key={tech}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.05, duration: 0.3 }}
                 >
-                  {tech}
-                </Badge>
+                  <Badge 
+                    variant="secondary" 
+                    className="px-4 py-2 text-sm font-medium hover:scale-105 transition-transform duration-200"
+                  >
+                    {tech}
+                  </Badge>
+                </motion.div>
               ))}
             </div>
-          </div>
+          </AnimatedSection>
         </div>
 
         {/* Modern Skills Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {skills.map((skill, index) => (
-            <Card 
-              key={skill.title} 
-              className="group border shadow-sm hover:shadow-md transition-all duration-300"
-              style={{ animationDelay: `${index * 0.15}s` }}
-            >
-              <CardContent className="p-6">
-                <div className="flex items-center mb-4">
-                  <div className="p-3 rounded-lg bg-primary/10 mr-4">
-                    <skill.icon className={`h-6 w-6 ${skill.color}`} />
+            <AnimatedSection key={skill.title} delay={index * 0.1}>
+              <Card className="group border shadow-sm hover:shadow-md transition-all duration-300 h-full">
+                <CardContent className="p-6">
+                  <div className="flex items-center mb-4">
+                    <div className="p-3 rounded-lg bg-primary/10 mr-4 group-hover:scale-110 transition-transform duration-300">
+                      <skill.icon className={`h-6 w-6 ${skill.color}`} />
+                    </div>
+                    <h4 className="font-semibold text-foreground text-lg">{skill.title}</h4>
                   </div>
-                  <h4 className="font-semibold text-foreground text-lg">{skill.title}</h4>
-                </div>
-                <p className="text-muted-foreground text-sm leading-relaxed">{skill.description}</p>
-              </CardContent>
-            </Card>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{skill.description}</p>
+                </CardContent>
+              </Card>
+            </AnimatedSection>
           ))}
         </div>
       </div>
