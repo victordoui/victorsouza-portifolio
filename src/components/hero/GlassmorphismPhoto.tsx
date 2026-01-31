@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import OrbitingIcons from './OrbitingIcons';
 
 interface GlassmorphismPhotoProps {
   src: string;
@@ -23,9 +22,6 @@ const GlassmorphismPhoto = ({ src, alt }: GlassmorphismPhotoProps) => {
           loading="eager"
         />
       </div>
-      
-      {/* Orbiting icons */}
-      <OrbitingIcons />
     </motion.div>
   );
 };
