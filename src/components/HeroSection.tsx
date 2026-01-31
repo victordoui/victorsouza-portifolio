@@ -2,8 +2,14 @@ import { Button } from '@/components/ui/button';
 import { ArrowDown, Github, Linkedin, Mail, Download } from 'lucide-react';
 import { useSiteSettings } from '@/hooks/useSiteSettings';
 import { toast } from '@/hooks/use-toast';
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 import TypewriterText from './TypewriterText';
+import SpotlightEffect from './hero/SpotlightEffect';
+import FloatingParticles from './hero/FloatingParticles';
+import AnimatedGradientText from './hero/AnimatedGradientText';
+import StatusBadge from './hero/StatusBadge';
+import AnimatedCounter from './hero/AnimatedCounter';
+import GlassmorphismPhoto from './hero/GlassmorphismPhoto';
 
 const HeroSection = () => {
   const { settings, downloadCv, hasCv, isLoading } = useSiteSettings();
@@ -20,23 +26,61 @@ const HeroSection = () => {
     'Especialista em Soluções Digitais'
   ];
 
+  // Staggered animation variants
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6 },
+    },
+  };
+
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center relative">
+    <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+      {/* Background effects */}
+      <SpotlightEffect />
+      <FloatingParticles />
+      
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Content */}
+          {/* Content with staggered animations */}
           <motion.div 
             className="text-center lg:text-left"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
           >
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 tracking-tight">
-              <span className="block text-muted-foreground text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal mb-2">Olá, eu sou</span>
-              <span className="block text-foreground">Victor Souza</span>
-            </h1>
+            {/* Status Badge */}
+            <motion.div variants={itemVariants} className="mb-6">
+              <StatusBadge />
+            </motion.div>
+
+            <motion.h1 
+              className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 tracking-tight"
+              variants={itemVariants}
+            >
+              <span className="block text-muted-foreground text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal mb-2">
+                Olá, eu sou
+              </span>
+              <AnimatedGradientText text="Victor Souza" className="block" />
+            </motion.h1>
             
-            <p className="text-xl lg:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed h-[60px] lg:h-[72px]">
+            <motion.p 
+              className="text-xl lg:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed h-[60px] lg:h-[72px]"
+              variants={itemVariants}
+            >
               <TypewriterText 
                 texts={roles}
                 className="text-foreground font-medium"
@@ -44,22 +88,23 @@ const HeroSection = () => {
                 deletingSpeed={40}
                 pauseDuration={2500}
               />
-            </p>
+            </motion.p>
 
             <motion.p 
-              className="text-lg text-muted-foreground mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
+              className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed"
+              variants={itemVariants}
             >
               Criando experiências digitais elegantes e transformando ideias em realidade através do código.
             </motion.p>
 
+            {/* Animated Counter */}
+            <motion.div variants={itemVariants} className="mb-10">
+              <AnimatedCounter />
+            </motion.div>
+
             <motion.div 
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
+              variants={itemVariants}
             >
               <Button 
                 size="lg" 
@@ -109,9 +154,7 @@ const HeroSection = () => {
             {/* Social Links */}
             <motion.div 
               className="flex justify-center lg:justify-start space-x-4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
+              variants={itemVariants}
             >
               {settings.github_url && (
                 <a 
@@ -177,24 +220,11 @@ const HeroSection = () => {
             </motion.div>
           </motion.div>
 
-          {/* Clean Hero Image without borders */}
-          <motion.div 
-            className="relative"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-          >
-            <div className="relative z-10 group">
-              <div className="relative overflow-hidden rounded-2xl image-fade-vignette">
-                <img
-                  src="/lovable-uploads/victor-hero-professional.png"
-                  alt="Victor Souza - Desenvolvedor Front-End e Especialista em IA"
-                  className="w-full max-w-md mx-auto rounded-2xl object-cover aspect-square lg:aspect-[4/5] transition-all duration-700 group-hover:scale-105"
-                  loading="eager"
-                />
-              </div>
-            </div>
-          </motion.div>
+          {/* Hero Photo with Glassmorphism and Orbiting Icons */}
+          <GlassmorphismPhoto 
+            src="/lovable-uploads/victor-hero-professional.png"
+            alt="Victor Souza - Desenvolvedor Front-End e Especialista em IA"
+          />
         </div>
 
         {/* Scroll Indicator */}
