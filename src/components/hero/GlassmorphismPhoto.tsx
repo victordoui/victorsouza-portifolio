@@ -18,7 +18,7 @@ const GlassmorphismPhoto = ({ src, alt }: GlassmorphismPhotoProps) => {
         <img
           src={src}
           alt={alt}
-          className="w-full max-w-md mx-auto object-cover aspect-square lg:aspect-[4/5] transition-all duration-700 group-hover:scale-105"
+          className="w-full max-w-xl mx-auto object-cover aspect-[3/4] lg:aspect-[4/5] transition-all duration-700 group-hover:scale-105"
           loading="eager"
         />
       </div>

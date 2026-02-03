@@ -7,9 +7,9 @@ import TypewriterText from './TypewriterText';
 import SpotlightEffect from './hero/SpotlightEffect';
 import FloatingParticles from './hero/FloatingParticles';
 import AnimatedGradientText from './hero/AnimatedGradientText';
-import StatusBadge from './hero/StatusBadge';
 import AnimatedCounter from './hero/AnimatedCounter';
 import GlassmorphismPhoto from './hero/GlassmorphismPhoto';
+import { EnhancedBackgroundBeams } from './ui/enhanced-background-beams';
 
 const HeroSection = () => {
   const { settings, downloadCv, hasCv, isLoading } = useSiteSettings();
@@ -50,6 +50,7 @@ const HeroSection = () => {
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden">
       {/* Background effects */}
+      <EnhancedBackgroundBeams className="opacity-50" />
       <SpotlightEffect />
       <FloatingParticles />
       
@@ -62,12 +63,7 @@ const HeroSection = () => {
             initial="hidden"
             animate="visible"
           >
-            {/* Status Badge */}
-            <motion.div variants={itemVariants} className="mb-6">
-              <StatusBadge />
-            </motion.div>
-
-            <motion.h1 
+            <motion.h1
               className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 tracking-tight"
               variants={itemVariants}
             >
