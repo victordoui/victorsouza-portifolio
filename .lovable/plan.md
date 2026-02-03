@@ -1,120 +1,59 @@
 
-# Plano de Melhorias para a Hero Section
 
-## Objetivo
-Transformar a Hero Section em uma experiencia visual memoravel que capture a atencao de recrutadores nos primeiros segundos, demonstrando habilidades tecnicas e criatividade.
+# Plano: Melhorias na Hero Section
 
----
-
-## Sugestoes de Melhorias
-
-### 1. Efeito Spotlight Interativo com Mouse
-Adicionar um efeito de luz que segue o cursor do mouse, criando uma sensacao de profundidade e interatividade que impressiona imediatamente.
-
-**O que faz:**
-- Cria um gradiente radial que acompanha o movimento do mouse
-- Revela sutilmente elementos de fundo conforme o usuario move o cursor
-- Demonstra dominio de animacoes e interatividade
+## Resumo das Alterações
+Vou fazer 3 modificações na sua Hero Section conforme solicitado:
 
 ---
 
-### 2. Icones de Tecnologias Orbitando sua Foto
-Criar um efeito visual onde icones de tecnologias (React, TypeScript, Node, etc.) orbitam ao redor da sua foto profissional.
+## 1. Remover Badge "Disponível para oportunidades"
 
-**O que faz:**
-- Mostra visualmente suas habilidades tecnicas
-- Cria movimento continuo que prende a atencao
-- Diferencia seu portfolio dos demais
+Vou remover o componente `StatusBadge` que aparece acima do seu nome.
 
----
-
-### 3. Texto com Gradiente Animado Brilhante
-Transformar seu nome "Victor Souza" em um texto com gradiente animado que simula um brilho passando.
-
-**O que faz:**
-- Destaca seu nome de forma elegante
-- Efeito sutil mas sofisticado
-- Comum em sites de grandes empresas tech
+**Arquivo:** `src/components/HeroSection.tsx`
+- Remover a importação do `StatusBadge`
+- Remover o bloco que renderiza o badge (linhas 65-68)
 
 ---
 
-### 4. Particulas Flutuantes no Background
-Adicionar particulas sutis flutuando no fundo que reagem ao movimento do mouse.
+## 2. Aumentar o Tamanho da Foto
 
-**O que faz:**
-- Cria profundidade visual
-- Background dinamico sem distrair
-- Efeito premium moderno
+Vou ajustar as classes CSS da foto para que ela apareça maior na tela.
 
----
-
-### 5. Badge de Status "Disponivel para Oportunidades"
-Adicionar um badge animado indicando que voce esta disponivel para novas oportunidades.
-
-**O que faz:**
-- Comunica disponibilidade imediatamente
-- Animacao de pulse chama atencao
-- CTA direto para recrutadores
+**Arquivo:** `src/components/hero/GlassmorphismPhoto.tsx`
+- Alterar `max-w-md` para `max-w-lg` ou `max-w-xl`
+- Ajustar `aspect-square lg:aspect-[4/5]` para permitir uma visualização maior
 
 ---
 
-### 6. Contador de Experiencia/Projetos
-Adicionar metricas animadas como "X+ projetos", "Y anos de experiencia".
+## 3. Adicionar Efeito de Background na Hero
 
-**O que faz:**
-- Prova social instantanea
-- Numeros que animam ao carregar
-- Credibilidade imediata
+Vou adicionar o componente `EnhancedBackgroundBeams` que já existe no projeto. Este componente cria linhas animadas elegantes que fluem pelo fundo, dando um efeito moderno e profissional.
 
----
-
-### 7. Melhorar a Foto com Efeito Glassmorphism
-Adicionar moldura com efeito de vidro fosco e borda gradiente animada.
-
-**O que faz:**
-- Destaca sua foto profissional
-- Efeito moderno e elegante
-- Borda com gradiente que gira sutilmente
-
----
-
-### 8. Animacao de Entrada Escalonada (Staggered)
-Melhorar as animacoes de entrada para que cada elemento apareca em sequencia fluida.
-
-**O que faz:**
-- Experiencia cinematica ao carregar
-- Guia o olhar do recrutador
-- Profissionalismo refinado
-
----
-
-## Detalhes Tecnicos
-
-### Novos Componentes a Criar:
-- `SpotlightEffect.tsx` - Efeito de luz seguindo o mouse
-- `OrbitingIcons.tsx` - Icones de tecnologias orbitando
-- `AnimatedGradientText.tsx` - Texto com gradiente brilhante
-- `FloatingParticles.tsx` - Particulas no background
-- `StatusBadge.tsx` - Badge de disponibilidade
-- `AnimatedCounter.tsx` - Contador de metricas
-
-### Modificacoes:
-- `HeroSection.tsx` - Integrar todos os novos componentes
-- `index.css` - Adicionar keyframes e estilos necessarios
-- `tailwind.config.ts` - Adicionar novas animacoes
-
-### Tecnologias Utilizadas:
-- Framer Motion (ja instalado)
-- Lucide React para icones (ja instalado)
-- CSS Animations customizadas
-- React hooks para interatividade
+**Arquivo:** `src/components/HeroSection.tsx`
+- Importar `EnhancedBackgroundBeams` de `@/components/ui/enhanced-background-beams`
+- Adicionar o componente no fundo da Hero Section junto com os outros efeitos
 
 ---
 
 ## Resultado Esperado
-Uma Hero Section que:
-- Prende a atencao nos primeiros 3 segundos
-- Demonstra habilidades tecnicas atraves do design
-- Comunica profissionalismo e criatividade
-- Facilita a acao do recrutador (contato, CV, projetos)
+
+Sua Hero Section terá:
+- Foto maior e mais destacada
+- Visual mais limpo sem o badge
+- Efeito de linhas animadas no background criando profundidade visual
+
+---
+
+## Detalhes Técnicos
+
+### Arquivos Modificados:
+1. `src/components/HeroSection.tsx` - Remover StatusBadge e adicionar EnhancedBackgroundBeams
+2. `src/components/hero/GlassmorphismPhoto.tsx` - Aumentar tamanho da imagem
+
+### Componentes Utilizados:
+- `EnhancedBackgroundBeams` - já existe em `src/components/ui/enhanced-background-beams.tsx`
+- Usa Framer Motion para animações suaves
+- Respeita preferência de movimento reduzido do sistema
 
