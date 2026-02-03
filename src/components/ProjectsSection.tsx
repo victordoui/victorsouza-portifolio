@@ -4,6 +4,7 @@ import { ProjectCard } from '@/components/ProjectCard';
 import ProjectFilters from '@/components/ProjectFilters';
 import AnimatedSection from '@/components/AnimatedSection';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface Projeto {
   id: string;
@@ -21,6 +22,7 @@ const ProjectsSection = () => {
   const [projetos, setProjetos] = useState<Projeto[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedTech, setSelectedTech] = useState<string | null>(null);
+  const { translations } = useLanguage();
 
   useEffect(() => {
     fetchProjetos();
@@ -82,11 +84,10 @@ const ProjectsSection = () => {
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <AnimatedSection className="text-center mb-12">
           <h2 className="text-4xl lg:text-6xl font-display font-bold mb-6 hero-gradient-text">
-            Meus Projetos
+            {translations.projects.title}
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Uma seleção dos meus projetos mais recentes, combinando design moderno 
-            com tecnologias de ponta
+            {translations.projects.subtitle}
           </p>
         </AnimatedSection>
 
@@ -104,8 +105,8 @@ const ProjectsSection = () => {
           <div className="text-center py-16">
             <p className="text-muted-foreground">
               {selectedTech 
-                ? `Nenhum projeto encontrado com ${selectedTech}.` 
-                : 'Nenhum projeto encontrado.'}
+                ? `${translations.projects.noProjectsWithTech} ${selectedTech}.` 
+                : translations.projects.noProjects}
             </p>
           </div>
         ) : (

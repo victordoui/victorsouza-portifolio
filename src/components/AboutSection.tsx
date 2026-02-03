@@ -3,15 +3,18 @@ import { Badge } from '@/components/ui/badge';
 import { Brain, Code, Zap, Database, Palette, Rocket } from 'lucide-react';
 import AnimatedSection from '@/components/AnimatedSection';
 import { motion } from 'framer-motion';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const AboutSection = () => {
+  const { translations } = useLanguage();
+
   const skills = [
-    { icon: Code, title: 'Frontend Development', description: 'React, TypeScript, Next.js, Tailwind CSS', color: 'text-primary' },
-    { icon: Brain, title: 'Inteligência Artificial', description: 'Machine Learning, Data Analysis, Python', color: 'text-primary' },
-    { icon: Zap, title: 'Vibe Code Solutions', description: 'Automação, Workflows, Integração APIs', color: 'text-primary' },
-    { icon: Database, title: 'Análise de Dados', description: 'SQL, Power BI, Analytics, Insights', color: 'text-primary' },
-    { icon: Palette, title: 'UI/UX Design', description: 'Figma, Design Systems, User Experience', color: 'text-primary' },
-    { icon: Rocket, title: 'Inovação', description: 'Soluções criativas, Otimização, Performance', color: 'text-primary' },
+    { icon: Code, title: translations.about.skills.frontend.title, description: translations.about.skills.frontend.description, color: 'text-primary' },
+    { icon: Brain, title: translations.about.skills.ai.title, description: translations.about.skills.ai.description, color: 'text-primary' },
+    { icon: Zap, title: translations.about.skills.vibe.title, description: translations.about.skills.vibe.description, color: 'text-primary' },
+    { icon: Database, title: translations.about.skills.data.title, description: translations.about.skills.data.description, color: 'text-primary' },
+    { icon: Palette, title: translations.about.skills.design.title, description: translations.about.skills.design.description, color: 'text-primary' },
+    { icon: Rocket, title: translations.about.skills.innovation.title, description: translations.about.skills.innovation.description, color: 'text-primary' },
   ];
 
   const technologies = [
@@ -25,11 +28,10 @@ const AboutSection = () => {
       <div className="container mx-auto px-4 lg:px-8">
         <AnimatedSection className="text-center mb-16">
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-6 hero-gradient-text">
-            Sobre Mim
+            {translations.about.title}
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Sou um desenvolvedor apaixonado por tecnologia, sempre buscando maneiras inovadoras 
-            de resolver problemas complexos através de soluções elegantes e eficientes.
+            {translations.about.description}
           </p>
         </AnimatedSection>
 
@@ -37,30 +39,19 @@ const AboutSection = () => {
           {/* About Content */}
           <AnimatedSection delay={0.1}>
             <h3 className="font-display text-2xl font-semibold mb-6 text-foreground">
-              Transformando ideias em realidade digital
+              {translations.about.subtitle}
             </h3>
             <div className="space-y-4 text-muted-foreground">
-              <p>
-                Com mais de 3 anos de experiência em desenvolvimento frontend e análise de dados, 
-                especializo-me em criar interfaces intuitivas e soluções inteligentes que 
-                combinam design excepcional com performance otimizada.
-              </p>
-              <p>
-                Minha paixão pela inteligência artificial e automação me levou a desenvolver 
-                soluções vibe code que aceleram processos e maximizam a eficiência empresarial.
-              </p>
-              <p>
-                Acredito que a melhor tecnologia é aquela que simplifica a vida das pessoas, 
-                e é com essa filosofia que abordo cada projeto - sempre focando na experiência 
-                do usuário e na inovação.
-              </p>
+              <p>{translations.about.paragraph1}</p>
+              <p>{translations.about.paragraph2}</p>
+              <p>{translations.about.paragraph3}</p>
             </div>
           </AnimatedSection>
 
           {/* Technologies */}
           <AnimatedSection delay={0.2} direction="right">
             <h3 className="font-display text-xl font-semibold mb-6 text-foreground">
-              Tecnologias & Ferramentas
+              {translations.about.technologiesTitle}
             </h3>
             <div className="flex flex-wrap gap-3">
               {technologies.map((tech, index) => (

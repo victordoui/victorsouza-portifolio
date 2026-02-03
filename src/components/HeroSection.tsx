@@ -3,6 +3,7 @@ import { ArrowDown, Github, Linkedin, Mail, Download } from 'lucide-react';
 import { useSiteSettings } from '@/hooks/useSiteSettings';
 import { toast } from '@/hooks/use-toast';
 import { motion, type Variants } from 'framer-motion';
+import { useLanguage } from '@/contexts/LanguageContext';
 import TypewriterText from './TypewriterText';
 import SpotlightEffect from './hero/SpotlightEffect';
 import FloatingParticles from './hero/FloatingParticles';
@@ -13,6 +14,8 @@ import { EnhancedBackgroundBeams } from './ui/enhanced-background-beams';
 
 const HeroSection = () => {
   const { settings, downloadCv, hasCv, isLoading } = useSiteSettings();
+  const { translations } = useLanguage();
+  
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -20,11 +23,7 @@ const HeroSection = () => {
     }
   };
 
-  const roles = [
-    'Desenvolvedor Front-End',
-    'Analista de IA',
-    'Especialista em Soluções Digitais'
-  ];
+  const roles = translations.hero.roles;
 
   // Staggered animation variants
   const containerVariants: Variants = {
@@ -68,7 +67,7 @@ const HeroSection = () => {
               variants={itemVariants}
             >
               <span className="block text-muted-foreground text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal mb-2">
-                Olá, eu sou
+                {translations.hero.greeting}
               </span>
               <AnimatedGradientText text="Victor Souza" className="block" />
             </motion.h1>
@@ -90,7 +89,7 @@ const HeroSection = () => {
               className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed"
               variants={itemVariants}
             >
-              Criando experiências digitais elegantes e transformando ideias em realidade através do código.
+              {translations.hero.description}
             </motion.p>
 
             {/* Animated Counter */}
@@ -107,7 +106,7 @@ const HeroSection = () => {
                 className="btn-modern h-12 px-8"
                 onClick={() => scrollToSection('projects')}
               >
-                Ver Projetos
+                {translations.hero.viewProjects}
               </Button>
               <Button 
                 variant="outline" 
@@ -116,7 +115,7 @@ const HeroSection = () => {
                 onClick={() => scrollToSection('contact')}
               >
                 <Mail className="mr-2 h-5 w-5" />
-                Contato
+                {translations.hero.contact}
               </Button>
               <Button 
                 variant="secondary" 
@@ -126,8 +125,8 @@ const HeroSection = () => {
                 onClick={() => {
                   if (isLoading) {
                     toast({
-                      title: 'Carregando configurações...',
-                      description: 'Aguarde enquanto carregamos as configurações.'
+                      title: translations.hero.loadingSettings,
+                      description: translations.hero.waitLoading
                     });
                     return;
                   }
@@ -143,7 +142,7 @@ const HeroSection = () => {
                 }}
               >
                 <Download className="mr-2 h-5 w-5" />
-                Baixar CV
+                {translations.hero.downloadCv}
               </Button>
             </motion.div>
 

@@ -4,12 +4,15 @@ import { Moon, Sun, Menu, X, Settings, LogOut } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { useTheme } from 'next-themes';
+import { useLanguage } from '@/contexts/LanguageContext';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { user, signOut } = useAuth();
   const { theme, setTheme } = useTheme();
+  const { translations } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,10 +36,10 @@ const Navigation = () => {
   };
 
   const navigationItems = [
-    { label: 'Início', id: 'hero' },
-    { label: 'Sobre', id: 'about' },
-    { label: 'Projetos', id: 'projects' },
-    { label: 'Contato', id: 'contact' },
+    { label: translations.navigation.home, id: 'hero' },
+    { label: translations.navigation.about, id: 'about' },
+    { label: translations.navigation.projects, id: 'projects' },
+    { label: translations.navigation.contact, id: 'contact' },
   ];
 
   return (
@@ -65,7 +68,7 @@ const Navigation = () => {
               to="/blog" 
               className="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-smooth rounded-lg hover:bg-accent"
             >
-              Blog
+              {translations.navigation.blog}
             </Link>
             {user ? (
               <div className="flex items-center space-x-2">
@@ -74,14 +77,14 @@ const Navigation = () => {
                   className="relative px-4 py-2 text-sm font-medium text-foreground/80 rounded-xl transition-all duration-300 hover:text-primary hover:bg-white/5 hover:backdrop-blur-md hover:shadow-lg hover:shadow-primary/20 before:absolute before:inset-0 before:rounded-xl before:bg-gradient-to-r before:from-primary/0 before:via-primary/5 before:to-primary/0 before:opacity-0 before:transition-opacity before:duration-300 hover:before:opacity-100 active:scale-95 flex items-center"
                 >
                   <Settings className="h-4 w-4 mr-2" />
-                  <span className="relative z-10">Painel</span>
+                  <span className="relative z-10">{translations.navigation.dashboard}</span>
                 </Link>
                 <button
                   onClick={() => signOut()}
                   className="relative px-4 py-2 text-sm font-medium text-foreground/80 rounded-xl transition-all duration-300 hover:text-destructive hover:bg-destructive/5 hover:backdrop-blur-md hover:shadow-lg hover:shadow-destructive/20 before:absolute before:inset-0 before:rounded-xl before:bg-gradient-to-r before:from-destructive/0 before:via-destructive/5 before:to-destructive/0 before:opacity-0 before:transition-opacity before:duration-300 hover:before:opacity-100 active:scale-95 flex items-center"
                 >
                   <LogOut className="h-4 w-4 mr-2" />
-                  <span className="relative z-10">Sair</span>
+                  <span className="relative z-10">{translations.navigation.logout}</span>
                 </button>
               </div>
             ) : (
@@ -94,8 +97,10 @@ const Navigation = () => {
             )}
           </div>
 
-          {/* Theme Toggle & Mobile Menu */}
+          {/* Theme Toggle, Language Switcher & Mobile Menu */}
           <div className="flex items-center space-x-2">
+            <LanguageSwitcher />
+            
             <button
               onClick={toggleTheme}
               className="p-2 rounded-lg hover:bg-accent transition-smooth"
@@ -140,7 +145,7 @@ const Navigation = () => {
               className="block w-full text-left px-4 py-3 text-muted-foreground hover:text-foreground hover:bg-accent transition-smooth rounded-lg mx-2"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Blog
+              {translations.navigation.blog}
             </Link>
             <div className="h-px bg-border mx-4 my-2"></div>
             {user ? (
@@ -151,7 +156,7 @@ const Navigation = () => {
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   <Settings className="h-4 w-4 mr-3" />
-                  Admin
+                  {translations.navigation.admin}
                 </Link>
                 <button
                   onClick={() => {
@@ -161,7 +166,7 @@ const Navigation = () => {
                   className="flex items-center w-full text-left px-6 py-4 text-foreground/80 hover:text-destructive hover:bg-gradient-to-r hover:from-destructive/5 hover:to-transparent transition-all duration-300 rounded-xl mx-2 font-medium"
                 >
                   <LogOut className="h-4 w-4 mr-3" />
-                  Sair
+                  {translations.navigation.logout}
                 </button>
               </>
             ) : (
@@ -171,7 +176,7 @@ const Navigation = () => {
                 onClick={() => setMobileMenuOpen(false)}
               >
                 <Settings className="h-4 w-4 mr-3" />
-                Login
+                {translations.navigation.login}
               </Link>
             )}
           </div>

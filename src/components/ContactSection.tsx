@@ -10,10 +10,12 @@ import { useSiteSettings } from '@/hooks/useSiteSettings';
 import { supabase } from '@/integrations/supabase/client';
 import AnimatedSection from '@/components/AnimatedSection';
 import { motion } from 'framer-motion';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const ContactSection = () => {
   const { settings } = useSiteSettings();
   const { toast } = useToast();
+  const { translations } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -46,8 +48,8 @@ const ContactSection = () => {
       if (error) throw error;
 
       toast({
-        title: "Mensagem enviada!",
-        description: "Obrigado pelo contato. Responderei em breve!",
+        title: translations.contact.success,
+        description: translations.contact.successDescription,
       });
 
       setFormData({
@@ -59,8 +61,8 @@ const ContactSection = () => {
     } catch (error) {
       console.error('Erro ao enviar mensagem:', error);
       toast({
-        title: "Erro ao enviar mensagem",
-        description: "Tente novamente mais tarde.",
+        title: translations.contact.error,
+        description: translations.contact.errorDescription,
         variant: "destructive"
       });
     }
@@ -75,13 +77,13 @@ const ContactSection = () => {
     },
     {
       icon: Phone,
-      title: 'Telefone',
+      title: translations.contact.phone,
       value: settings.telefone || '+55 (21) 98790-2208',
       href: `tel:${settings.telefone?.replace(/\D/g, '') || '+5521987902208'}`
     },
     {
       icon: MapPin,
-      title: 'Localização',
+      title: translations.contact.location,
       value: settings.endereco || 'Rio de Janeiro, RJ - Brasil',
       href: '#'
     }
@@ -92,11 +94,10 @@ const ContactSection = () => {
       <div className="container mx-auto px-4 lg:px-8">
         <AnimatedSection className="text-center mb-16">
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gradient-modern">
-            Vamos Conversar
+            {translations.contact.title}
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Tem um projeto em mente? Quer discutir uma ideia ou simplesmente bater um papo sobre tecnologia? 
-            Estou sempre aberto a novas oportunidades e conexões.
+            {translations.contact.subtitle}
           </p>
         </AnimatedSection>
 
@@ -105,56 +106,56 @@ const ContactSection = () => {
           <AnimatedSection delay={0.1}>
             <Card className="shadow-lg">
               <CardHeader>
-                <CardTitle className="text-2xl font-display">Envie uma Mensagem</CardTitle>
+                <CardTitle className="text-2xl font-display">{translations.contact.formTitle}</CardTitle>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="name">Nome</Label>
+                      <Label htmlFor="name">{translations.contact.name}</Label>
                       <Input
                         id="name"
                         name="name"
                         value={formData.name}
                         onChange={handleInputChange}
-                        placeholder="Seu nome completo"
+                        placeholder={translations.contact.namePlaceholder}
                         required
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="email">Email</Label>
+                      <Label htmlFor="email">{translations.contact.email}</Label>
                       <Input
                         id="email"
                         name="email"
                         type="email"
                         value={formData.email}
                         onChange={handleInputChange}
-                        placeholder="seu@email.com"
+                        placeholder={translations.contact.emailPlaceholder}
                         required
                       />
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="subject">Assunto</Label>
+                    <Label htmlFor="subject">{translations.contact.subject}</Label>
                     <Input
                       id="subject"
                       name="subject"
                       value={formData.subject}
                       onChange={handleInputChange}
-                      placeholder="Como posso ajudar?"
+                      placeholder={translations.contact.subjectPlaceholder}
                       required
                     />
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="message">Mensagem</Label>
+                    <Label htmlFor="message">{translations.contact.message}</Label>
                     <Textarea
                       id="message"
                       name="message"
                       value={formData.message}
                       onChange={handleInputChange}
-                      placeholder="Conte-me mais sobre seu projeto ou ideia..."
+                      placeholder={translations.contact.messagePlaceholder}
                       rows={6}
                       required
                     />
@@ -162,7 +163,7 @@ const ContactSection = () => {
 
                   <Button type="submit" size="lg" className="w-full">
                     <Send className="mr-2 h-5 w-5" />
-                    Enviar Mensagem
+                    {translations.contact.send}
                   </Button>
                 </form>
               </CardContent>
@@ -174,10 +175,10 @@ const ContactSection = () => {
             <div className="space-y-8">
               <div>
                 <h3 className="font-display text-2xl font-semibold mb-6 text-foreground">
-                  Informações de Contato
+                  {translations.contact.contactInfo}
                 </h3>
                 <p className="text-muted-foreground mb-8">
-                  Prefere outro meio de contato? Aqui estão algumas alternativas:
+                  {translations.contact.contactAlt}
                 </p>
               </div>
 
@@ -220,11 +221,10 @@ const ContactSection = () => {
                 transition={{ delay: 0.4 }}
               >
                 <h4 className="font-semibold text-foreground mb-4 text-lg flex items-center">
-                  ⚡ <span className="ml-2">Resposta Rápida Garantida</span>
+                  ⚡ <span className="ml-2">{translations.contact.quickResponse}</span>
                 </h4>
                 <p className="text-muted-foreground text-sm leading-relaxed">
-                  Costumo responder a todas as mensagens em até 24 horas. 
-                  Para projetos urgentes, entre em contato via WhatsApp para uma resposta ainda mais rápida.
+                  {translations.contact.quickResponseText}
                 </p>
               </motion.div>
             </div>

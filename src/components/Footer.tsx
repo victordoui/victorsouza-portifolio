@@ -1,8 +1,10 @@
 import { Github, Linkedin, Mail, Heart } from 'lucide-react';
 import { useSiteSettings } from '@/hooks/useSiteSettings';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Footer = () => {
   const { settings } = useSiteSettings();
+  const { translations } = useLanguage();
   const currentYear = new Date().getFullYear();
   
   // Use dynamic settings with fallbacks
@@ -35,19 +37,21 @@ const Footer = () => {
       label: 'Email'
     }])
   ];
+
   const quickLinks = [{
-    label: 'Início',
+    label: translations.navigation.home,
     href: '#hero'
   }, {
-    label: 'Sobre',
+    label: translations.navigation.about,
     href: '#about'
   }, {
-    label: 'Projetos',
+    label: translations.navigation.projects,
     href: '#projects'
   }, {
-    label: 'Contato',
+    label: translations.navigation.contact,
     href: '#contact'
   }];
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId.replace('#', ''));
     if (element) {
@@ -56,7 +60,9 @@ const Footer = () => {
       });
     }
   };
-  return <footer className="bg-foreground/5 border-t border-border/50">
+
+  return (
+    <footer className="bg-foreground/5 border-t border-border/50">
       <div className="container mx-auto px-4 lg:px-8 py-12">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand */}
@@ -65,38 +71,51 @@ const Footer = () => {
               Victor Souza
             </div>
             <p className="text-muted-foreground mb-6 max-w-md">
-              Desenvolvedor Front-End, Analista de IA e Especialista em Soluções Vibe Code. 
-              Transformando ideias em realidade digital.
+              {translations.footer.description}
             </p>
             
             {/* Social Links */}
             <div className="flex space-x-4">
-              {socialLinks.map(link => <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-muted/50 rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-200" aria-label={link.label}>
+              {socialLinks.map(link => (
+                <a 
+                  key={link.label} 
+                  href={link.href} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="w-10 h-10 bg-muted/50 rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-200" 
+                  aria-label={link.label}
+                >
                   <link.icon className="h-5 w-5" />
-                </a>)}
+                </a>
+              ))}
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4">Navegação</h4>
+            <h4 className="font-semibold text-foreground mb-4">{translations.footer.navigation}</h4>
             <ul className="space-y-3">
-              {quickLinks.map(link => <li key={link.label}>
-                  <button onClick={() => scrollToSection(link.href)} className="text-muted-foreground hover:text-primary transition-colors duration-200">
+              {quickLinks.map(link => (
+                <li key={link.label}>
+                  <button 
+                    onClick={() => scrollToSection(link.href)} 
+                    className="text-muted-foreground hover:text-primary transition-colors duration-200"
+                  >
                     {link.label}
                   </button>
-                </li>)}
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Services */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4">Serviços</h4>
+            <h4 className="font-semibold text-foreground mb-4">{translations.footer.services}</h4>
             <ul className="space-y-3 text-muted-foreground">
-              <li>Desenvolvimento Frontend</li>
-              <li>Análise de Dados</li>
-              <li>Soluções Vibe Code</li>
-              <li>Consultoria em IA</li>
+              <li>{translations.footer.frontendDev}</li>
+              <li>{translations.footer.dataAnalysis}</li>
+              <li>{translations.footer.vibeCode}</li>
+              <li>{translations.footer.aiConsulting}</li>
             </ul>
           </div>
         </div>
@@ -105,12 +124,13 @@ const Footer = () => {
         <div className="border-t border-border/50 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-muted-foreground text-sm">
-              © {currentYear} Victor Souza. Todos os direitos reservados.
+              © {currentYear} Victor Souza. {translations.footer.rights}
             </p>
-            
           </div>
         </div>
       </div>
-    </footer>;
+    </footer>
+  );
 };
+
 export default Footer;
